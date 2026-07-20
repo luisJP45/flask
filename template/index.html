@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clasificador Químico de Vinos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-dark text-white text-center py-3">
+                        <h4 class="mb-0">Analizador y Clasificador de Vinos</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <p class="text-muted small text-center mb-4">Introduce los parámetros químicos para determinar el tipo de cepa.</p>
+                        <form method="POST">
+                            <div class="mb-3">
+                                <label class="form-label">Grado de Alcohol (%)</label>
+                                <input type="number" step="0.01" class="form-control" name="alcohol" required placeholder="Ej: 13.0">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Ácido Málico (g/L)</label>
+                                <input type="number" step="0.01" class="form-control" name="malic_acid" required placeholder="Ej: 1.71">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Contenido de Ceniza</label>
+                                <input type="number" step="0.01" class="form-control" name="ash" required placeholder="Ej: 2.43">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Alcalinidad de la Ceniza</label>
+                                <input type="number" step="0.1" class="form-control" name="alcalinity" required placeholder="Ej: 15.6">
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 py-2">Ejecutar Predicción</button>
+                        </form>
+
+                        {% if prediccion %}
+                        <div class="alert alert-success mt-4 text-center border-0 shadow-sm">
+                            <strong>Clase detectada:</strong> {{ prediccion }}
+                        </div>
+                        {% endif %}
+
+                        {% if error %}
+                        <div class="alert alert-danger mt-4 text-center">
+                            {{ error }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
